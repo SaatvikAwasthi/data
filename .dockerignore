@@ -1,0 +1,8 @@
+.git
+../../.idea
+.vscode
+.github
+../.gitignore
+out
+docs
+README.md

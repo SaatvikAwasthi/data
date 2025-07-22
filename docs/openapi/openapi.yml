@@ -1,0 +1,79 @@
+openapi: 3.0.0
+info:
+  title: Data Pipeline API
+  description: API for managing data pipelines and integrations.
+  version: 1.0.0
+servers:
+  - url: http://localhost:13000
+    description: Local development server
+components:
+  schemas:
+    RawDataResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/RawData'
+    RawData:
+      type: object
+      properties:
+        id:
+          type: string
+        created_at:
+          type: string
+        source:
+          type: string
+        posts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Post'
+    Post:
+      type: object
+      properties:
+        userId:
+          type: integer
+          format: int64
+        title:
+          type: string
+        body:
+          type: string
+    AddRawDataResponse:
+      type: object
+      properties:
+        message:
+          type: string
+paths:
+  /data:
+    get:
+      summary: Retrieve all data pipelines
+      tags:
+        - Data Pipelines
+      responses:
+        '200':
+          description: Successful retrieval of data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RawDataResponse'
+        '500':
+          description: Internal server error
+    post:
+      summary: Create a new data pipeline
+      tags:
+        - Data Pipelines
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RawData'
+      responses:
+        '201':
+          description: Pipeline created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddRawDataResponse'
+        '500':
+          description: Internal server error

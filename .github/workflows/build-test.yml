@@ -1,0 +1,56 @@
+name: Build and Test on Render
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.24.4'
+          cache: true
+
+      - name: Download dependencies
+        run: make dep
+
+      - name: Verify dependencies
+        run: go mod verify
+
+      - name: Run go vet
+        run: go vet ./...
+
+      - name: Run go fmt check
+        run: |
+          if [ "$(gofmt -s -l . | wc -l)" -gt 0 ]; then
+            echo "Code is not formatted properly"
+            gofmt -s -l .
+            exit 1
+          fi
+
+      - name: Run Unit Tests
+        run: make unit-tests
+
+      - name: Run Component Tests
+        run: make component-tests
+
+      - name: compile binary
+        run: make compile
+      - name: Run Unit Tests
+        run: make unit-tests
+
+      - name: Run Component Tests
+        run: make component-tests
+
+      - name: compile binary
+        run: make compile
