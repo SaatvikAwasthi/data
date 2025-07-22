@@ -13,13 +13,10 @@ fmt:
 	go fmt ./...
 	go vet ./...
 
-deps:
+dep:
 	go mod tidy
 	go mod download
 	go mod vendor
-
-integration-tests:
-	go test ./integrationTest/
 
 test:
 	go clean -testcache
