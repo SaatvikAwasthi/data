@@ -1,0 +1,16 @@
+{
+  "data": [
+    {
+      "id": "ObjectID(\"687f9f2d2928ebe67c1c6e93\")",
+      "created_at": "2025-07-22 14:24:45.894587642 +0000 UTC",
+      "source": "https://jsonplaceholder.typicode.com/posts",
+      "posts": [
+        {
+          "userId": 1,
+          "title": "Test Title",
+          "body": "Test Body"
+        }
+      ]
+    }
+  ]
+}

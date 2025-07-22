@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"os"
 
 	"github.com/joho/godotenv"
 
@@ -20,7 +21,9 @@ func main() {
 	flag.StringVar(&configFile, configFileKey, defaultConfigFile, configFileUsage)
 	flag.Parse()
 
-	path, _ := util.GetAbsPath(configFile)
-	_ = godotenv.Load(path)
+	if os.Getenv("TEST_APP_MODE") != "PROD" {
+		path, _ := util.GetAbsPath(configFile)
+		_ = godotenv.Load(path)
+	}
 	server.Init()
 }
