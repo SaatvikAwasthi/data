@@ -22,6 +22,6 @@ func (m Mongo) Server() string {
 		format := "mongodb://%s:%s@%s:%d/%s?authSource=admin"
 		return util.Format(format, m.Username, m.Password, m.Host, m.Port, m.DataStore)
 	}
-	format := "mongodb://%s:%s@%s"
+	format := "mongodb+srv://%s:%s@%s"
 	return util.Format(format, m.Username, m.Password, m.ServerURI)
 }
