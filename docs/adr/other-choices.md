@@ -12,6 +12,7 @@
 
 ## Missing Features
 - Adding migration scripts for MongoDB to handle schema changes and data transformations as the application evolves.
+- Adding a cron job to auto pull data from external apis periodically.
 - Implementing advanced logging and monitoring capabilities to track application performance and errors in production.
 - Enhancing the API with rate limiting and authentication mechanisms to secure endpoints and manage traffic effectively.
 - Integrating a more sophisticated error handling and retry mechanism for external service calls to improve resilience against transient failures.
