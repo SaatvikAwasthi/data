@@ -139,3 +139,24 @@ GET /data?created_at="string"
   ]
 }
 ```
+
+## DB Schema
+
+The Data Pipeline uses MongoDB with the following schema:
+
+**Collection: `rawData`**
+```json
+{
+  "id": "string",
+  "created_at": "string",
+  "source": "string",
+  "posts": [
+    {
+      "userId": 1,
+      "title": "string",
+      "body": "string"
+    }
+  ]
+}
+```
+More into check the adrs in `docs/adr/`
