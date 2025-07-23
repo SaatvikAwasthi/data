@@ -6,6 +6,8 @@ info:
 servers:
   - url: http://localhost:13000
     description: Local development server
+  - url https://data-zhry.onrender.com
+    description: Render server (deployed)
 components:
   schemas:
     RawDataResponse:
